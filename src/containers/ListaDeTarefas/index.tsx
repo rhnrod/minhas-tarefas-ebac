@@ -1,43 +1,39 @@
+import { useSelector } from 'react-redux'
+
 import Tarefa from '../../components/Tarefa'
 import { Container } from './styles'
+import { RootReducer } from '../../store'
 
-const tarefas = [
-  {
-    titulo: 'Estudar TS',
-    descricao: 'Ver aula 3',
-    prioridade: 'importante',
-    status: 'pendente'
-  },
-  {
-    titulo: 'Estudar JS',
-    descricao: 'Ver aula 1',
-    prioridade: 'urgente',
-    status: 'concluída'
-  },
-  {
-    titulo: 'Estudar Vue',
-    descricao: 'Ver aula 12',
-    prioridade: 'importante',
-    status: 'pendente'
+const ListaDeTarefas = () => {
+  const { itens } = useSelector((state: RootReducer) => state.tarefas)
+  const { termo } = useSelector((state: RootReducer) => state.filtro)
+
+  const filtraTarefas = () => {
+    return itens.filter(
+      (item) => item.titulo.toLowerCase().search(termo.toLowerCase()) >= 0
+    )
   }
-]
 
-const ListaDeTarefas = () => (
-  <Container>
-    <p>2 tarefas marcadas como &ldquo;categoria&rdquo; e &ldquo;termo&rdquo;</p>
-    <ul>
-      {tarefas.map((t) => (
-        <li key={t.titulo}>
-          <Tarefa
-            titulo={t.titulo}
-            prioridade={t.prioridade}
-            status={t.status}
-            descricao={t.descricao}
-          />
-        </li>
-      ))}
-    </ul>
-  </Container>
-)
+  return (
+    <Container>
+      <p>
+        2 tarefas marcadas como &ldquo;categoria&rdquo; e &ldquo;{termo}&rdquo;
+      </p>
+      <ul>
+        {filtraTarefas().map((t) => (
+          <li key={t.titulo}>
+            <Tarefa
+              id={t.id}
+              titulo={t.titulo}
+              prioridade={t.prioridade}
+              status={t.status}
+              descricao={t.descricao}
+            />
+          </li>
+        ))}
+      </ul>
+    </Container>
+  )
+}
 
 export default ListaDeTarefas
