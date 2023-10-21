@@ -20,7 +20,7 @@ const initialState: TarefasState = {
       titulo: 'Estudar Python',
       descricao: 'Responder o exercício de python no módulo 3 da EBAC',
       status: enums.Status.PENDENTE,
-      prioridade: enums.Prioridade.IMPORTANTE
+      prioridade: enums.Prioridade.NORMAL
     },
     {
       id: 3,
@@ -29,6 +29,13 @@ const initialState: TarefasState = {
         'Ler o livro "Estrutura de dados e algoritmos com Javascript" da Loiane Groner',
       status: enums.Status.PENDENTE,
       prioridade: enums.Prioridade.IMPORTANTE
+    },
+    {
+      id: 4,
+      titulo: 'Estudar algoritmos',
+      descricao: 'Ler o livro "Entendendo algoritmos" do Adityia Baghava',
+      status: enums.Status.CONCLUIDO,
+      prioridade: enums.Prioridade.URGENTE
     }
   ]
 }
