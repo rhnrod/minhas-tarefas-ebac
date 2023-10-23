@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 
 import { MainContainer, Titulo, Campo, ButtonSave } from '../../styles'
 import { Form, Opcoes, Opcao } from './styles'
-import Tarefa from '../../models/Tarefa'
 import { cadastrar } from '../../store/reducers/tarefas'
 
 const Formulario = () => {
@@ -18,15 +17,15 @@ const Formulario = () => {
 
   const cadastrarTarefa = (evento: FormEvent) => {
     evento.preventDefault()
-    const tarefaParaAdicionar = new Tarefa(
-      titulo,
-      prioridade,
-      enums.Status.PENDENTE,
-      descricao,
-      9
-    )
 
-    dispatch(cadastrar(tarefaParaAdicionar))
+    dispatch(
+      cadastrar({
+        titulo,
+        prioridade,
+        status: enums.Status.PENDENTE,
+        descricao
+      })
+    )
     navigate('/')
   }
   return (
@@ -38,6 +37,7 @@ const Formulario = () => {
           onChange={({ target }) => setTitulo(target.value)}
           type="text"
           placeholder="Título"
+          required
         />
         <Campo
           value={descricao}

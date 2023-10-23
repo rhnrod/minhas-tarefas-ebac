@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux'
+import { ChangeEvent, useEffect, useState } from 'react'
 
-import { useEffect, useState } from 'react'
-import { remover, editar } from '../../store/reducers/tarefas'
+import { remover, editar, alteraStatus } from '../../store/reducers/tarefas'
 import TarefaClass from '../../models/Tarefa'
-import * as S from './styles'
 import { Button, ButtonCancelRemove, ButtonSave } from '../../styles'
+import * as S from './styles'
+import * as enums from '../../utils/enums/Tarefa'
 
 export type Props = TarefaClass
 
@@ -30,9 +31,29 @@ const Tarefa = ({
     setDescricao(descricaoOriginal)
   }
 
+  function alteraStatusTarefa(evento: ChangeEvent<HTMLInputElement>) {
+    dispatch(
+      alteraStatus({
+        id,
+        finalizado: evento.target.checked
+      })
+    )
+  }
+
   return (
     <S.Card>
-      <S.Title>{titulo}</S.Title>
+      <label htmlFor={titulo}>
+        <input
+          type="checkbox"
+          id={titulo}
+          checked={status === enums.Status.CONCLUIDO}
+          onChange={alteraStatusTarefa}
+        />
+        <S.Title>
+          {estaEditando && <em>Editando: </em>}
+          {titulo}
+        </S.Title>
+      </label>
       <S.Tag parametro="prioridade" prioridade={prioridade}>
         {prioridade}
       </S.Tag>

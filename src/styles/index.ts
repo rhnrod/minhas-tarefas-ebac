@@ -42,7 +42,7 @@ export const Button = styled.button`
   font-size: 12px;
   font-weight: bold;
 
-  background-color: #2f3640;
+  background-color: ${variaveis.azulEscuro};
   color: #fff;
 
   border: none;
