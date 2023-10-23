@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 
 import Tarefa from '../../components/Tarefa'
-import { Container } from './styles'
+import { Container, Resultado } from './styles'
 import { RootReducer } from '../../store'
 
 const ListaDeTarefas = () => {
@@ -39,11 +39,11 @@ const ListaDeTarefas = () => {
 
   return (
     <Container>
-      <p>
+      <Resultado>
         {tarefas.length}{' '}
         {tarefas.length == 1 ? 'tarefa marcada' : 'tarefas marcadas'} como
         &ldquo;<b>{criterio}</b>&rdquo; {termo === '' ? '' : `e "${termo}"`}
-      </p>
+      </Resultado>
       <ul>
         {tarefas.map((t) => (
           <li key={t.titulo}>
