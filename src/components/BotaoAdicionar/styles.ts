@@ -1,17 +1,29 @@
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const BotaoAdicionar = styled.div`
+export const Circulo = styled(Link)`
   height: 64px;
   width: 64px;
 
-  font-size: 18px;
-  font-weight: bold;
-  background-color: green;
+  font-size: 40px;
+  background-color: #44bd32;
   color: #fff;
+  text-decoration: none;
 
   border-radius: 50%;
-  margin-top: 16px;
+  opacity: 0.35;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 40px;
+  right: 40px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+
+  user-select: none;
+
+  &:hover {
+    opacity: 1;
+  }
 `
