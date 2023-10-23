@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import FiltroCard from '../../components/FiltroCard'
 import * as enums from '../../utils/enums/Tarefa'
 import * as S from './styles'
+import { Campo } from '../../styles/index'
 import { RootReducer } from '../../store'
 import { alterarTermo } from '../../store/reducers/filtro'
 
@@ -12,7 +13,7 @@ const BarraLateral = () => {
   return (
     <S.Aside>
       <div>
-        <S.Campo
+        <Campo
           type="text"
           placeholder="Buscar"
           value={termo}

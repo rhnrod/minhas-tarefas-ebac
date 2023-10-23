@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux'
 
 import { useEffect, useState } from 'react'
-import * as S from './styles'
 import { remover, editar } from '../../store/reducers/tarefas'
 import TarefaClass from '../../models/Tarefa'
+import * as S from './styles'
+import { Button, ButtonCancelRemove, ButtonSave } from '../../styles'
 
 export type Props = TarefaClass
 
@@ -46,7 +47,7 @@ const Tarefa = ({
       <S.ActionBar>
         {estaEditando ? (
           <>
-            <S.ButtonSave
+            <ButtonSave
               onClick={() => {
                 dispatch(
                   editar({
@@ -61,17 +62,17 @@ const Tarefa = ({
               }}
             >
               Salvar
-            </S.ButtonSave>
-            <S.ButtonCancelRemove onClick={cancelarEdicao}>
+            </ButtonSave>
+            <ButtonCancelRemove onClick={cancelarEdicao}>
               Cancelar
-            </S.ButtonCancelRemove>
+            </ButtonCancelRemove>
           </>
         ) : (
           <>
-            <S.Button onClick={() => setEstaEditando(true)}>Editar</S.Button>
-            <S.ButtonCancelRemove onClick={() => dispatch(remover(id))}>
+            <Button onClick={() => setEstaEditando(true)}>Editar</Button>
+            <ButtonCancelRemove onClick={() => dispatch(remover(id))}>
               Remover
-            </S.ButtonCancelRemove>
+            </ButtonCancelRemove>
           </>
         )}
       </S.ActionBar>
